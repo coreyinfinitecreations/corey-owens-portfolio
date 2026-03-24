@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "studio.coreyowens.com"
+        }
+      ],
+      "destination": "/studio/:path*"
+    }
+  ]
+}
