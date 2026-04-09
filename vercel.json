@@ -1,6 +1,16 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "studio.coreyowens.com"
+        }
+      ],
+      "destination": "/studio"
+    },
+    {
       "source": "/:path*",
       "has": [
         {
