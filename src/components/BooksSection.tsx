@@ -55,15 +55,22 @@ const fallbackBooks: Book[] = [
 
 export default async function BooksSection() {
   let books: Book[] = [];
+  let fetchError: string | null = null;
   try {
     books = await getBooks();
-  } catch {
-    /* Sanity not configured */
+  } catch (e) {
+    fetchError = String(e);
   }
-  if (!books || books.length === 0) books = fallbackBooks;
+  const usingFallback = !books || books.length === 0;
+  if (usingFallback) books = fallbackBooks;
 
   return (
     <section id="books" className="px-6 py-24">
+      {(usingFallback || fetchError) && (
+        <p className="text-center text-xs text-red-400 mb-4">
+          {fetchError ? `Error: ${fetchError}` : "Using fallback data — Sanity returned 0 books"}
+        </p>
+      )}
       <div className="mx-auto max-w-6xl">
         <h2 className="mb-4 text-center text-3xl font-bold tracking-tight sm:text-4xl">
           Books
