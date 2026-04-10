@@ -8,6 +8,8 @@ import ContactSection from "@/components/ContactSection";
 import { getProjects } from "@/sanity/queries";
 import { projects as fallbackProjects } from "@/data/projects";
 
+export const revalidate = 60;
+
 export default async function Home() {
   let projects: SanityProject[] = [];
   try {
